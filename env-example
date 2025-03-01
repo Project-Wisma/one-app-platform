@@ -1,1 +1,2 @@
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/wisma-db?schema=public"
+DATABASE_URL=
+SECRET_KEY=
