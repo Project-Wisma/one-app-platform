@@ -2,6 +2,8 @@
 import { Navbar } from "../../components/navbar/Navbar";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+
 const rooms = [
     {
       name: "Deluxe Room",
@@ -70,6 +72,10 @@ export default function Dashboard() {
                 
                 <button className="mt-10 px-10 py-4 bg-yellow-500 text-white text-2xl font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition transform hover:scale-110">
                     Make a Reservation
+                </button>
+                <button className="mt-10 px-10 py-4 bg-blue-500 text-white text-xl font-semibold rounded-full shadow-lg hover:bg-yellow-600 transition transform hover:scale-110 flex">
+                    <a href="https://www.google.com/maps?q=-6.2957995,106.8363537" target="_blank">Go to Location</a>
+                    <FaLocationDot />
                 </button>
                 
                 <section className="mt-16 text-center max-w-4xl">
