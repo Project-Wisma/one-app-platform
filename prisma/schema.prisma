@@ -12,3 +12,84 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique @db.VarChar(255)
+  password String @db.VarChar(255)
+  role Role @default(ADMIN)
+  comments Comment[]
+  activities Activity[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Activity {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  message String
+  verb Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  text String
+  roomId Int
+  room Room @relation(fields: [roomId], references: [id])
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  medium Media[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Room {
+  id Int @id @default(autoincrement())
+  number Int
+  status String @default("open")
+  type String?
+  comments Comment[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id Int @id @default(autoincrement())
+  secureUrl String
+  type MediaType
+  commentId Int
+  comment Comment @relation(fields: [commentId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Inventory {
+  id Int @id @default(autoincrement())
+  title String
+  quantity Int
+  imageUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Gallery {
+  id Int @id @default(autoincrement())
+  title String
+  secureUrl String
+  type MediaType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum MediaType {
+  VIDEO
+  IMAGE
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+}
