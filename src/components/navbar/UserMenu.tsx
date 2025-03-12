@@ -55,7 +55,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           duration-200
         "
         >
-          Your Hotel Home!
+          Wisma Rembulan
         </div>
         <div
           onClick={toggleOpen}
