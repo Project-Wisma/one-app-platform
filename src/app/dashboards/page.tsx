@@ -78,6 +78,11 @@ export default function Dashboard() {
                     <FaLocationDot />
                 </button>
 
+                {/* <div className="bnl-widget-calendar-v1"></div>
+                <div className="datepicker-widget-version1" data-months="12" data-url="bookandlink.com" data-arrow="false" data-rateplan="" data-roomtype="5169" data-property="1555" id="datepicker"></div>
+                <script src="https://admin.bookandlink.com/public/js/widget/widget-calendar-v1.min.js"></script> */}
+
+
                 <section className="mt-16 text-center max-w-4xl">
                     <h2 className="text-4xl font-extrabold text-white mb-6">Our Luxury Rooms</h2>
                     <div className="relative w-full flex items-center">

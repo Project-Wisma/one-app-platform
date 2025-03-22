@@ -80,7 +80,7 @@ const RoomsPage = () => {
     return (
         <div>
             <Navbar currentUser={null} />
-            <div className="mx-auto p-6">
+            <div className="mx-auto bg-gray-100 p-6">
                 <h1 className="text-2xl font-bold mb-4">Room Management</h1>
 
                 {/* Create Room */}
@@ -118,7 +118,7 @@ const RoomsPage = () => {
                 </div>
 
                 {/* Rooms Table */}
-                <table className="w-full border-collapse border">
+                <table className="w-full border-collapse border border-gray-300 rounded-lg overflow-hidden">
                     <thead>
                         <tr className="bg-gray-200">
                             <th className="border p-2">Photo</th>

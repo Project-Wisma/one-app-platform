@@ -58,130 +58,132 @@ const InventoriesPage = () => {
     return (
         <div>
             <Navbar currentUser={null} />
-            <div className="mx-auto p-6">
-                <h1 className="text-2xl font-bold mb-4">Inventory Management</h1>
+            <div className="bg-gray-100 min-h-screen flex justify-center p-4">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
+                    <h1 className="text-2xl font-bold mb-4">Inventory Management</h1>
 
-                {/* Create Inventory */}
-                <div className="flex gap-4 mb-4">
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        className="border p-2 rounded w-1/6"
-                        value={newInventory.title}
-                        onChange={(e) => setNewInventory({ ...newInventory, title: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        className="border p-2 rounded w-1/6"
-                        value={newInventory.description}
-                        onChange={(e) => setNewInventory({ ...newInventory, description: e.target.value })}
-                    />
-                    <input
-                        type="url"
-                        placeholder="Photo URL"
-                        className="border p-2 rounded w-1/6"
-                        value={newInventory.photo}
-                        onChange={(e) => setNewInventory({ ...newInventory, photo: e.target.value })}
-                    />
-                    <input
-                        type="number"
-                        placeholder="Quantity"
-                        className="border p-2 rounded w-1/6"
-                        min="1"
-                        value={newInventory.quantity}
-                        onChange={(e) => setNewInventory({ ...newInventory, quantity: parseInt(e.target.value) })}
-                    />
-                    <input
-                        type="date"
-                        placeholder="Created By"
-                        className="border p-2 rounded w-1/6"
-                        value={newInventory.created_by}
-                        onChange={(e) => setNewInventory({ ...newInventory, created_by: e.target.value })}
-                    />
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleCreate}>
-                        Add Item
-                    </button>
-                </div>
+                    {/* Create Inventory */}
+                    <div className="flex gap-4 mb-4">
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            className="border p-2 rounded w-1/6"
+                            value={newInventory.title}
+                            onChange={(e) => setNewInventory({ ...newInventory, title: e.target.value })}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Description"
+                            className="border p-2 rounded w-1/6"
+                            value={newInventory.description}
+                            onChange={(e) => setNewInventory({ ...newInventory, description: e.target.value })}
+                        />
+                        <input
+                            type="url"
+                            placeholder="Photo URL"
+                            className="border p-2 rounded w-1/6"
+                            value={newInventory.photo}
+                            onChange={(e) => setNewInventory({ ...newInventory, photo: e.target.value })}
+                        />
+                        <input
+                            type="number"
+                            placeholder="Quantity"
+                            className="border p-2 rounded w-1/6"
+                            min="1"
+                            value={newInventory.quantity}
+                            onChange={(e) => setNewInventory({ ...newInventory, quantity: parseInt(e.target.value) })}
+                        />
+                        <input
+                            type="date"
+                            placeholder="Created By"
+                            className="border p-2 rounded w-1/6"
+                            value={newInventory.created_by}
+                            onChange={(e) => setNewInventory({ ...newInventory, created_by: e.target.value })}
+                        />
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleCreate}>
+                            Add Item
+                        </button>
+                    </div>
 
-                {/* Inventories Table */}
-                <table className="w-full border-collapse border">
-                    <thead>
-                        <tr className="bg-gray-200">
-                            <th className="border p-2">Photo</th>
-                            <th className="border p-2">Title</th>
-                            <th className="border p-2">Description</th>
-                            <th className="border p-2">Quantity</th>
-                            <th className="border p-2">Created By</th>
-                            <th className="border p-2">Created At</th>
-                            <th className="border p-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {inventories.map((item) => (
-                            <tr key={item.id} className="border">
-                                <td className="border p-2">
-                                    <img src={item.photo} alt={item.title} className="w-16 h-16 rounded" />
-                                </td>
-                                <td className="border p-2">
-                                    {editingInventory?.id === item.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingInventory.title}
-                                            onChange={(e) => setEditingInventory({ ...editingInventory, title: e.target.value })}
-                                            className="border p-1 rounded"
-                                        />
-                                    ) : (
-                                        item.title
-                                    )}
-                                </td>
-                                <td className="border p-2">
-                                    {editingInventory?.id === item.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingInventory.description}
-                                            onChange={(e) => setEditingInventory({ ...editingInventory, description: e.target.value })}
-                                            className="border p-1 rounded"
-                                        />
-                                    ) : (
-                                        item.description
-                                    )}
-                                </td>
-                                <td className="border p-2">
-                                    {editingInventory?.id === item.id ? (
-                                        <input
-                                            type="number"
-                                            min="1"
-                                            value={editingInventory.quantity}
-                                            onChange={(e) => setEditingInventory({ ...editingInventory, quantity: parseInt(e.target.value) })}
-                                            className="border p-1 rounded"
-                                        />
-                                    ) : (
-                                        item.quantity
-                                    )}
-                                </td>
-                                <td className="border p-2">{item.created_by}</td>
-                                <td className="border p-2">{item.created_at}</td>
-                                <td className="border p-2">
-                                    {editingInventory?.id === item.id ? (
-                                        <button className="bg-green-500 text-white px-2 py-1 rounded mr-2" onClick={handleUpdate}>
-                                            Save
-                                        </button>
-                                    ) : (
-                                        <>
-                                            <button className="bg-yellow-500 text-white px-2 py-1 rounded mr-2" onClick={() => handleEdit(item)}>
-                                                Edit
-                                            </button>
-                                            <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={() => handleDelete(item.id)}>
-                                                Delete
-                                            </button>
-                                        </>
-                                    )}
-                                </td>
+                    {/* Inventories Table */}
+                    <table className="w-full border-collapse border border-gray-300 rounded-lg overflow-hidden">
+                        <thead>
+                            <tr className="bg-gray-200">
+                                <th className="border p-2">Photo</th>
+                                <th className="border p-2">Title</th>
+                                <th className="border p-2">Description</th>
+                                <th className="border p-2">Quantity</th>
+                                <th className="border p-2">Created By</th>
+                                <th className="border p-2">Created At</th>
+                                <th className="border p-2">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {inventories.map((item) => (
+                                <tr key={item.id} className="border">
+                                    <td className="border p-2">
+                                        <img src={item.photo} alt={item.title} className="w-16 h-16 rounded" />
+                                    </td>
+                                    <td className="border p-2">
+                                        {editingInventory?.id === item.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingInventory.title}
+                                                onChange={(e) => setEditingInventory({ ...editingInventory, title: e.target.value })}
+                                                className="border p-1 rounded"
+                                            />
+                                        ) : (
+                                            item.title
+                                        )}
+                                    </td>
+                                    <td className="border p-2">
+                                        {editingInventory?.id === item.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingInventory.description}
+                                                onChange={(e) => setEditingInventory({ ...editingInventory, description: e.target.value })}
+                                                className="border p-1 rounded"
+                                            />
+                                        ) : (
+                                            item.description
+                                        )}
+                                    </td>
+                                    <td className="border p-2">
+                                        {editingInventory?.id === item.id ? (
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                value={editingInventory.quantity}
+                                                onChange={(e) => setEditingInventory({ ...editingInventory, quantity: parseInt(e.target.value) })}
+                                                className="border p-1 rounded"
+                                            />
+                                        ) : (
+                                            item.quantity
+                                        )}
+                                    </td>
+                                    <td className="border p-2">{item.created_by}</td>
+                                    <td className="border p-2">{item.created_at}</td>
+                                    <td className="border p-2">
+                                        {editingInventory?.id === item.id ? (
+                                            <button className="bg-green-500 text-white px-2 py-1 rounded mr-2" onClick={handleUpdate}>
+                                                Save
+                                            </button>
+                                        ) : (
+                                            <>
+                                                <button className="bg-yellow-500 text-white px-2 py-1 rounded mr-2" onClick={() => handleEdit(item)}>
+                                                    Edit
+                                                </button>
+                                                <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={() => handleDelete(item.id)}>
+                                                    Delete
+                                                </button>
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
